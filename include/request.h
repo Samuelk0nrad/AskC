@@ -5,6 +5,7 @@
 #include <lib/json.hpp>
 #include <sstream>
 #include <string>
+#include <sys/ioctl.h>
 #include <utility>
 #include <vector>
 
@@ -68,6 +69,8 @@ public:
   std::vector<std::pair<std::string, std::string>> parameters;
 
   void print(std::ostream &os = std::cout) const {
+    int selected = 0;
+
     os << RESET << WHITE << "You: " << question << RESET << BOLD << CYAN << "\n"
        << DIVIDER << "\n"
        << RESET << "\n";
