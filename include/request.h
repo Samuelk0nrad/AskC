@@ -77,10 +77,16 @@ public:
     os << WHITE << " >> " << RESET << BOLD << GREEN << command << RESET << "\n";
 
     if (!parameters.empty()) {
+      size_t maxKeyWidth = 0;
+      for (const auto &[key, _] : parameters) {
+        maxKeyWidth = std::max(maxKeyWidth, key.length());
+      }
+
       os << BOLD << CYAN << "\n" << RESET;
       for (const auto &[key, value] : parameters) {
-        os << "  " << std::setw(15) << std::left << YELLOW << key << RESET
-           << " : " << WHITE << value << RESET << "\n";
+        os << "  " << std::setw(static_cast<int>(maxKeyWidth)) << std::left
+           << YELLOW << key << RESET << " : " << WHITE << value << RESET
+           << "\n";
       }
     }
 
