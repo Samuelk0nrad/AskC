@@ -1,8 +1,10 @@
 #include "settings.h"
 #include <cerrno>
 #include <fstream>
+#include <ios>
 #include <iostream>
 #include <lib/json.hpp>
+#include <limits>
 
 using namespace std;
 
@@ -44,45 +46,77 @@ void setSetting(string key, string value, string path) {
 }
 
 void printManue() {
-  cout << "1. Set Provider" << endl;
-  cout << "2. Config Provider" << endl;
-  cout << "3. exit" << endl;
+  cout << "##########################" << endl;
+  cout << "#        Settings        #" << endl;
+  cout << "+========================+" << endl;
+  cout << "| -> 1. Set Provider     |" << endl;
+  cout << "| -> 2. Config Provider  |" << endl;
+  cout << "| -> 3. exit             |" << endl;
+  cout << "+------------------------+" << endl;
   cout << endl;
+
+  cout << " > ";
 }
 
 void printProviders() {
+  cout << "Select one of the avaliable providers: " << endl;
+  int maxChar = 0;
   for (int i = 0; i < PROVIDERS_COUNT; i++) {
-    cout << i << ". " << PROVIDERS[i] << endl;
+    if (PROVIDERS[i].size() > maxChar)
+      maxChar = PROVIDERS[i].size();
   }
+  string dashes(maxChar + 8, '-');
+  cout << "+" << dashes << "+" << endl;
+  for (int i = 0; i < PROVIDERS_COUNT; i++) {
+    string spaces(maxChar - PROVIDERS[i].size(), ' ');
+    cout << "| -> " << i << ". " << PROVIDERS[i] << spaces << " |" << endl;
+  }
+  cout << "+" << dashes << "+" << endl;
 }
 
 void setProvider() {
-  cout << "\n Select one of the avaliable providers \n";
   printProviders();
   int input = -1;
+  cout << endl << " > ";
   cin >> input;
+  cout << endl;
 
   setSetting("provider", PROVIDERS[input], PATH);
 }
 
 void configProviders() {
-  cout << "\n Select one of the avaliable providers \n";
-
   printProviders();
   int input = -1;
-  cin >> input;
+  cout << endl << " > ";
+  if (!(cin >> input)) {
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << endl << "not a valide input" << endl;
+    return;
+  }
   string provider = PROVIDERS[input];
-  cout << "\n \n Configer " << provider << endl;
+  cout << endl << "----------------------------" << endl;
+  cout << "Configer " << provider << ": " << endl;
 
-  cout << "1. Set " << provider << "API Key" << endl;
+  string dashes(PROVIDERS[input].size() + 20, '-');
 
-  cin >> input;
-  cin >> input;
+  cout << "+" << dashes << "+" << endl;
+  cout << "| -> 1. Set " << provider << " API Key |" << endl;
+  cout << "+" << dashes << "+" << endl;
+
+  cout << endl << " > ";
+  if (!(cin >> input)) {
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << endl << "not a valide input" << endl;
+    return;
+  }
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  cout << endl;
   if (input == 1) {
     string apikey = "";
-    cout << "\nEnter your API key: ";
+    cout << "Enter your API key: ";
     getline(cin, apikey);
     setSetting(provider + "_api_key", apikey, PATH);
+    cout << endl;
     return;
   }
 }
@@ -92,6 +126,9 @@ void enterSettingsMenue() {
     printManue();
     int input = 0;
     cin >> input;
+
+    cout << endl;
+    cout << "----------------------------" << endl;
 
     switch (input) {
     case 1:
@@ -104,7 +141,7 @@ void enterSettingsMenue() {
       return;
       break;
     default:
-      cout << "Not a option";
+      cout << "Not a option" << endl;
     }
   }
 }
