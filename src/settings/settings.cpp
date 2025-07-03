@@ -24,16 +24,8 @@ pair<string, string> getConfig(string path) {
 
   nlohmann::json config = nlohmann::json::parse(file);
   string provider = config["provider"].get<string>();
-  if (provider == "gemini") {
-    string apiKey = config["gemini_api_key"].get<string>();
-    if (!apiKey.empty()) {
-      return {provider, apiKey};
-    }
-
-    return {provider, ""};
-  }
-
-  return {"", ""};
+  string apiKey = config[provider + "_api_key"].get<string>();
+  return {provider, apiKey};
 }
 
 void setSetting(string key, string value, string path) {

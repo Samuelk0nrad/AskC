@@ -1,10 +1,29 @@
 #include "settings/settings.h"
+#include <cpr/cpr.h>
 #include <gemini.h>
 #include <iostream>
 #include <lib/json.hpp>
 #include <request.h>
 
 using namespace std;
+
+void testAPI(string apiKey) {
+
+  nlohmann::json body = {
+      {"contents",
+       {{{"parts", {{{"text", "Explain how AI works in a few words"}}}}}}}};
+
+  cpr::Response r =
+      cpr::Post(cpr::Url{"https://generativelanguage.googleapis.com/v1beta/"
+                         "models/gemini-2.5-flash:generateContent"},
+                cpr::Header{{"x-goog-api-key", apiKey},
+                            {"Content-Type", "application/json"}},
+                cpr::Body{body.dump()});
+
+  // Print the response
+  std::cout << "Status code: " << r.status_code << '\n';
+  std::cout << "Response: " << r.text << '\n';
+}
 
 int main(int argc, char *argv[]) {
   if (argc >= 2) {
@@ -43,9 +62,14 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  Gemini gem("some API key");
+  // cout << apiKey << endl;
+
+  Gemini gem(apiKey);
   Request res = gem;
 
-  cout << res.question(question) << endl << provider << endl << apiKey << endl;
+  // testAPI(apiKey);
+
+  gem.question(question).print();
+
   return 0;
 }
