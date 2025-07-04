@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
 
   // testAPI(apiKey);
 
-  gem.question(question).print();
+  gem.question(question).execute();
 
   return 0;
 }
