@@ -29,7 +29,7 @@ Before you run the program for the first time, you may add your api key for your
 
 ## Program documentation
 
-The entry point into the application is the main function in the (askc.cpp)[src/askc.cpp] file if the user used the 'config' keyword, the program will enter the settings menu in (settings.cpp)[src/settings/settings.cpp].
+The entry point into the application is the main function in the [askc.cpp](src/askc.cpp) file. If the user used the 'config' keyword, the program will enter the settings menu in (settings.cpp)[src/settings/settings.cpp].
 
 The project is structured so that all the settings-related things are in the src/settings folder, and the header files are in the include folder.
 
@@ -57,7 +57,7 @@ Additional files and folders exist, but these are the core for understanding and
 
 model: gemini-2.5-flash
 
-I use the (nlohmann JSON library)[https://github.com/nlohmann/json] for the JSON in the request and response of the gemini api.
+I use the [nlohmann JSON library](https://github.com/nlohmann/json) for the JSON in the request and response of the gemini api.
 
 This is the expected JSON response that Gemini should return:
 
@@ -94,11 +94,11 @@ This is the expected JSON response that Gemini should return:
 
 The request gets sent to the gemini api to `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`.
 
-The response gets parsed into usable data and then displayed using the (request.h)[include/request.h]
+The response gets parsed into usable data and then displayed using the [request.h](include/request.h)
 
 ### UI  <-- AI helped a lot with creating the CLI's UI and user experience, like the navigation using the arrow keys
 
-#### (request.h)[include/request.h]
+#### [request.h](include/request.h)
 
 The purpose of this file is to define the classes and the functions for the Terminal manipulation, like color and text, for an interactive interface.
 `ANCI` codes are defined to style and format the text of text in the interface.
