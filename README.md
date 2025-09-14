@@ -99,8 +99,43 @@ The response gets parsed into usable data and then displayed using the [request.
 ### UI  
 > AI helped a lot with creating the CLI's UI and user experience, like the navigation using the arrow keys
 
-#### [request.h](include/request.h)
+#### **[request.h](include/request.h)**
 
 The purpose of this file is to define the classes and the functions for the Terminal manipulation, like color and text, for an interactive interface.
 `ANCI` codes are defined to style and format the text of text in the interface.
+`DEVIDER` is a visual divider for the interface
 
+functions like:
+- moveCourserUp
+- clearFromCourser
+- clearScreen
+- moveCourserTop
+- clearLine
+- wrapText
+Are all helper functions for navigation inside the interface using the arrow keys
+
+The class `Response` is there to save and handle the response and to display the interface with the function `execute`. This function displays the interface and looks for arrow-key hits, and then updates the interface
+
+### Settings
+
+All the settings get saved in a JSON file called config.json, in the root directory of the program. This can be changed inside the settings.h file.
+The file settings.h contains all the configurations about the default settings-configuration, and providers. The settings.cpp contains all the implementation fo the settings menu.
+
+## Contripution
+
+Contributions are welcome!!! Just clone the repo and create a pull request.
+
+TODOs that are missing:
+- more customisability
+- more provider integrations
+- general better code structure and architecture
+- more cool features ;)
+- and a lot more small things
+
+What you need is just a GitHub account, the cloned repo, and CMake installed on your machine (Linux or WSL on Windows is recommended).
+
+**Thanks for contributing**
+
+---
+
+If you like this project, please leave a star to support me (and follow me :)!
