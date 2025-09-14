@@ -126,11 +126,12 @@ The file settings.h contains all the configurations about the default settings-c
 Contributions are welcome!!! Just clone the repo and create a pull request.
 
 TODOs that are missing:
-- more customisability
-- more provider integrations
-- general better code structure and architecture
-- more cool features ;)
-- and a lot more small things
+[ ] more customisability
+[ ] more provider integrations
+[ ] general better code structure and architecture
+[ ] more cool features ;)
+[ ] and a lot more small things
+[ ] build the project for arm architecture
 
 What you need is just a GitHub account, the cloned repo, and CMake installed on your machine (Linux or WSL on Windows is recommended).
 
