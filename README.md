@@ -96,7 +96,8 @@ The request gets sent to the gemini api to `https://generativelanguage.googleapi
 
 The response gets parsed into usable data and then displayed using the [request.h](include/request.h)
 
-### UI  <-- AI helped a lot with creating the CLI's UI and user experience, like the navigation using the arrow keys
+### UI  
+> AI helped a lot with creating the CLI's UI and user experience, like the navigation using the arrow keys
 
 #### [request.h](include/request.h)
 
